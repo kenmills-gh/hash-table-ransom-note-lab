@@ -10,4 +10,15 @@ def can_construct(ransomNote: str, magazine: str) -> bool:
     Returns:
         bool: True if ransomNote can be constructed, False otherwise.
     """
-    pass  # TODO: Implement this function
+    char_counts = {}
+
+    # Build character frequency counts from magazine
+    for char in magazine:
+        char_counts[char] = char_counts.get(char, 0) + 1
+
+    # Verify each character in ransomNote
+    for char in ransomNote:
+        if char_counts.get(char, 0) <= 0:
+            return False
+        char_counts[char] -= 1
+    return True
